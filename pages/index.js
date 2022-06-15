@@ -15,7 +15,7 @@ export default function Home({ pokemon }) {
 
   return (
     <Layout title='NextJS PokeDex'>
-      <div>
+      <div className={"grid grid-cols-3 gap-3"}>
         {pokemon.map((item, index) => (
           <p key={index}>
             <Link href={`/pokemon/${index + 1}`}>
