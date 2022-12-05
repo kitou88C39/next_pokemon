@@ -2,14 +2,25 @@ import Layout from '../components/Layout';
 import Link from 'next/link';
 
 export default function Home({ pokemon }) {
+  /**
+   * 足りない桁数を0埋めする関数
+   * @param num: 表示させたい数値
+   * @param len: 表示させたい桁数
+   * @returns {string}
+   */
+  const zeroPadding = (num, len) => {
+    // 指定した数値の前に指定した桁数分0を追加したあと、後ろから0桁を返す
+    return (Array(len).join("0") + num).slice(-len);
+  }
+
   return (
     <Layout title='NextJS PokeDex'>
-      <div>
+      <div className={"grid grid-cols-3 gap-3"}>
         {pokemon.map((item, index) => (
           <p key={index}>
             <Link href={`/pokemon/${index + 1}`}>
               <a className='border-b-2 py-3 border-grey my-0 hover:shadow-md capitalize flex items-center text-xl font-bold bg-gray-100'>
-                <span className='mr-2 font-light'>{index + 1}</span>
+                <span className='mr-2 font-light'>{zeroPadding(index + 1, 3)}</span>
                 <img
                   src={item.image}
                   alt={item.name}
